@@ -1,4 +1,2 @@
 "# InventoryApp" 
-"# InventoryStore" 
-"# InventoryStore" 
-"# InventoryStore" 
+
