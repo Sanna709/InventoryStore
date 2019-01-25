@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Device Store</title>
+    <link rel="stylesheet" href="deviceStore.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <Script src="deviceStore.js" type="text/javascript"></Script>
+</head>
+
+<body>
+    <div id="container-fluid" class="row bgimg col-12">
+        <div class="col-12" id="title">
+            <br>
+            <h1 class="h1-temp">
+                <i class="fab fa-dyalog"></i>eviceland
+            </h1>
+        </div>
+        <div class="row col-12">
+            <div class="col-3"></div>
+            <div class="col-6" id="search">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Device Name...." aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-light" type="submit" id="searchButton">Button</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+        <div class="col-12" id="main">
+            <div class="row">
+                <div class="card mx-2 p-4" id="card">
+                    <img class="card-img-top" src="p1.png" alt="Card image cap" id="img">
+                    <div class="card-body">
+                        <h5 style="text-align: center" class="card-title">
+                            <b>Device Name</b>
+                        </h5>
+                        <p style="text-align: center" class="card-text">Description</p>
+                        <p style="text-align: center" class="card-text">
+                            <button class="btn btn-primary" id="status">Status</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

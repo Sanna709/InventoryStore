@@ -1,22 +1,90 @@
-const mongoose = require('mongoose');
 var userController = require('./user.js');
 var deviceController = require('./device.js');
+const Sequelize = require('sequelize');
 
-//connecting mlabs
-mongoose.connect('mongodb://test:test123@ds163014.mlab.com:63014/devicetable');
+const db = new Sequelize('deviceinventorya', 'root', 'surabhi', {
+    host: 'localhost',
+    dialect: 'mysql',
+    pool: {
+        min: 0,
+        max: 5,
+    },
+    insecureAuth: true,
+    port: 3306
+})
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    console.log("Connected to database successfully!!")
-});
+const user = db.define('userTable', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    emailId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        uniqueKey: true
+    },
+    phoneNo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+})
 
+const device = db.define('deviceTable', {
+    dId: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    dName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    desc: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    photo: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    issueDate: {
+        type: Sequelize.DATE,
+        allowNull: false
+    },
+    returnDate: {
+        type: Sequelize.DATE,
+        allowNull: false
+    },
+    issueTo: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+})
+
+device.belongsTo(user);
+
+db.sync()
+    .then(() => console.log("Database has been synced"))
+    .catch((err) => console.error(err))
 
 module.exports = function (app) {
-
     //fire controllers`
     userController(app);
     deviceController(app);
 
+    return {
+        user,
+        device
+    }
 };
+
 

@@ -1,0 +1,45 @@
+.bgimg {
+    float: left;
+    margin: 0px;
+    background-image: url("w1.jpg");
+    min-height:100%;
+    min-width: 100%;
+    background-position: center;
+    background-size: cover;
+    /* overflow-y: auto */
+}
+#signupbox {
+    margin-top: 30px;
+}
+
+#desc{
+    height: 38px
+}
+
+#signupbox > div:first-child {        
+    padding-bottom: 10px;    
+}
+
+#form > div {
+    margin-bottom: 25px;
+}
+
+#form > div:last-child {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.h1-temp{
+    font-family: "Raleway", sans-serif;
+    text-align:center;
+    color:white;
+}
+
+i{
+    color:white;
+}
+
+body,h1 {font-family: "Raleway", sans-serif;}
+body, html {height: 100%;
+    margin: 0px;
+}
