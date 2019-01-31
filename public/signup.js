@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    if (sessionStorage.getItem("email") !== null) {
+        location.href = "/deviceStore";
+    }
+
     $('form').on('submit', function (e) {
       e.preventDefault();
         var item = $('form input');
@@ -15,7 +19,7 @@ $(document).ready(function () {
                    location.reload();
                }
                else if(data==="Fail"){
-
+                location.href="/default";
                }
                else
                {
@@ -26,8 +30,6 @@ $(document).ready(function () {
         });
         return false;
     });
-    // function login() {
-    //     location.href = "/login";
-    // }
+ 
 
 });

@@ -23,34 +23,51 @@
             </h1>
         </div>
         <div class="row col-12">
-            <div class="col-3"></div>
+            <div class="col-2"></div>
             <div class="col-6" id="search">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Device Name...." aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-light" type="submit" id="searchButton">Button</button>
-                    </div>
+                <form action="/deviceStore" method="post">
+                    <div class="input-group mb-3">
+                        <input type="text" id="key" class="form-control" oninput="search()" name="key" placeholder="Device Name...."
+                            aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-light" type="submit" id="searchButton">Search</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-4">
+            <button class="btn btn-outline-light" onclick="window.location.href='/addDevice'" id="addButton">Add
+                Device</button>
+            <button class="btn btn-outline-light" onclick="load()" id="profileButton">My
+                Profile</button>
+            <button class="btn btn-outline-light" onclick="logout()" id="logoutButton">Log Out</button>
+        </div>
+    </div>
+
+    <div class="col-12" id="main">
+        <div class="row">
+            <% for(var i=0; i < result.length; i++) { %>
+
+            <div class="card " id="card">
+                <img class="card-img-top" alt="Card image cap" id="img" src="/images/<%=result[i].photo%> " >
+                <div class="card-body">
+                    <h5 style="text-align: center" class="card-title">
+                        <b>
+                            <%=result[i].dName%></b>
+                    </h5>
+                    <p style="text-align: center" class="card-text">
+                        <%=result[i].desc%>
+                    </p>
+                    <p style="text-align: center" class="card-text" id=<%=result[i].dId %> >
+                        <button class="btn btn-primary resultBTN"  value= <%=result[i].status%> >
+                            <%=result[i].status%></button>
+                    </p>
                 </div>
             </div>
-            <div class="col-3"></div>
+            <%}%>
         </div>
 
-        <div class="col-12" id="main">
-            <div class="row">
-                <div class="card mx-2 p-4" id="card">
-                    <img class="card-img-top" src="p1.png" alt="Card image cap" id="img">
-                    <div class="card-body">
-                        <h5 style="text-align: center" class="card-title">
-                            <b>Device Name</b>
-                        </h5>
-                        <p style="text-align: center" class="card-text">Description</p>
-                        <p style="text-align: center" class="card-text">
-                            <button class="btn btn-primary" id="status">Status</button>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
     </div>
 
 </body>

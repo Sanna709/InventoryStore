@@ -56,17 +56,22 @@ const device = db.define('deviceTable', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'Available'
+    },
     issueDate: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
     },
     returnDate: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
     },
     issueTo: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
 })
 
@@ -78,13 +83,8 @@ db.sync()
 
 module.exports = function (app) {
     //fire controllers`
-    userController(app);
-    deviceController(app);
-
-    return {
-        user,
-        device
-    }
+    userController(app,user);
+    deviceController(app,device,user);
 };
 
 

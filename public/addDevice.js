@@ -1,33 +1,44 @@
 $(document).ready(function () {
-
+    if(sessionStorage.getItem("email")===null)
+{
+    location.href = "/login";
+}
+    var device = {}
     $('form').on('submit', function (e) {
-      e.preventDefault();
-        var dName=document.getElementById('dName')
-        var desc=document.getElementById('desc')
-        var file=document.getElementById('file')
-        console.log(dName.value)
-        console.log(desc.value)
-        console.log(file.value)
-        // $.ajax({
-        //     type: 'POST',
-        //     url: '/addDevice',
-        //     data: item,
-        //     success: function (data) {
-        //         console.log(data)
-        //     if(data==="Fail")
-        //        {
-        //            alert("Some Err Occured......Plz Re-Enter the Information");
-        //            location.reload();
-        //        }
-        //        else
-        //        {
-        //         alert("New Device added Successfully!!");
-        //         location.href="/deviceStore";
-        //        }
-        //     },
-        // });
+        e.preventDefault();
+        var dName = document.getElementById('dName').value
+        var desc = document.getElementById('desc').value
+        var photo = document.getElementById("Photo").files[0];
+        let formData = new FormData();
+        device["dName"] = dName;
+        device["desc"] = desc;
+        formData.append("photo", photo);
+        fetch('/upload', { method: "POST", body: formData })
+            .then(res => {
+                res.json().then(data => {
+                    device["dphoto"]=data.photo
+                    submit();
+                })
+            })
+            .catch(err => {
+                location.href="/default";
+            })
         return false;
     });
+    function submit() {
+        console.log(device)
+        $.ajax({
+            type: 'POST',
+            url: '/addDevice',
+            data:device,
+            success: function (data) {
+                console.log(data)
+                if (data === "Done") {
+                    location.href = "/deviceStore";
+                }
+            },
+        });
+    };
+})
 
-});
 

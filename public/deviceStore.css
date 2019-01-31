@@ -1,6 +1,6 @@
 .bgimg {
-    float: left;
-    margin: 0px;
+    /* float: left;
+    margin: 0px; */
     background-image: url("w1.jpg");
     min-height:100%;
     min-width: 100%;
@@ -12,6 +12,8 @@
 #card{
     background-color: rgba(245, 240, 240, 0.5);
     margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #img{

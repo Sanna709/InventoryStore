@@ -1,0 +1,46 @@
+.bgimg {
+    float: left;
+    margin: 0px;
+    background-image: url("w1.jpg");
+    min-height:100%;
+    min-width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+
+
+#card{
+    background-color: rgba(245, 240, 240, 0.5);
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    align-content:center;
+}
+
+#img{
+    width: 300px;
+    height:200px;
+    align-self:center
+}
+
+#status{
+    width:130px;
+    align-content:center;
+    margin-right:5px
+}
+
+.h1-temp{
+    font-family: "Raleway", sans-serif;
+    text-align:center;
+    color:white;
+}
+
+i{
+    color:white;
+}
+
+body,h1 {font-family: "Raleway", sans-serif;}
+body, html {height: 100%;
+    margin: 0px;
+}

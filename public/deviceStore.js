@@ -1,26 +1,39 @@
 $(document).ready(function () {
 
-    $('form').on('submit', function (e) {
-      e.preventDefault();
-        var item = $('form input');
-        $.ajax({
-            type: 'POST',
-            url: '/login',
-            data: item,
-            success: function (data) {
-                console.log("Returning"+data)
-            if(data==="Fail")
-               {
-                   alert("Either Email or password is wrong!!");
-                   location.reload();
-               }
-               else
-               {
-                location.href="/deviceStore";
-               }
-            },
-        });
-        return false;
-    });
+    if (sessionStorage.getItem("email") === null) {
+        location.href = "/login";
+    }
+    $(".resultBTN").click(function () {
+        // alert(this.value)
+        if (this.value === "Available") {
+            location.href = "/order/" + this.parentElement.id;
+        }
+        else {
+            location.href = "/taken/"+this.parentElement.id
+        }
+    })
+
 
 });
+
+function search() {
+    var key = document.getElementById("key").value;
+    $.ajax({
+        type: 'POST',
+        url: '/deviceStore',
+        data: { "key": key },
+        contentType: "application/json",
+        dataType: "json",
+    });
+}
+
+function logout(){
+    sessionStorage.clear();
+    location.href = "/"
+}
+
+function load(){
+    location.href = "/myDevice/"+sessionStorage.getItem("id")
+}
+
+

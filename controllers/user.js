@@ -1,8 +1,9 @@
 var bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-var db = require('./inventory.js');
-module.exports = function (app) {
+// var db = require('./inventory.js');
+
+module.exports = function (app,user) {
 
     app.get('/', function (req, res) {
         res.render('home');
@@ -13,16 +14,8 @@ module.exports = function (app) {
     });
 
     app.post('/signup', urlencodedParser, function (req, res) {
-        // console.log("In user signup");
-        // console.log(req.body);
-        // user(req.body).save(function (err) {
-        //     if (err)
-        //         res.send("Exited")
-        //     else
-        //         res.send("Created")
-        // });
         console.log("in signup");
-        // console.log("body" + req.body)
+        console.log(req.body)
         let obj = req.body
         let condition = {
             where: {
@@ -34,14 +27,14 @@ module.exports = function (app) {
                 if(result.length===0)
                 {
                     user.create({
-                        name: obj.user,
+                        name: obj.name,
                         password: obj.password,
                         emailId: obj.emailId,
                         phoneNo: obj.phoneNo,
                     }).then((user) => {
-                        res.status(200).send()
+                        res.send()
                     }).catch((err) => {
-                        res.status(501).send("Could not create a new user")
+                        res.send("Could not create a new user")
                     })
                 }
                 else{
@@ -60,18 +53,8 @@ module.exports = function (app) {
     });
 
     app.post('/login',urlencodedParser, function (req, res) {
-        // console.log("In user login");
-        // console.log(req.body);
-        // var obj = req.body;
-        // user.find({ emailId: obj.emailId, password: obj.password }, function (err, docs) {
-        //     if (docs.length) {
-        //         res.send("Loged In Successfully!!")
-        //     } else {
-        //         res.send("Fail")
-        //     }
-        // });
         console.log("in login")
-        console.log("body" + req.body)
+        console.log( req.body)
         let obj=req.body
         let condition = {
             where: {
@@ -84,17 +67,22 @@ module.exports = function (app) {
                 if(result.length===0)
                 {
                     console.log("Not found")
-                    res.status(501).send("No User");
+                    res.send("No User");
                 }
                 else{
+                    console.log(result[0].id)
                     console.log("found")
-                    res.status(200).send(result);
+                    res.send(result[0].id+"");
                 }
             })
             .catch((err) => {
                 console.log("Not found")
-                res.status(404).send("Fail")
+                res.send("Fail")
             })
+    });
+
+    app.get('/default', function (req, res) {
+        res.render('defaultPage');
     });
 
 };
